@@ -1,5 +1,6 @@
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
+from random import shuffle
 
 def generate_hashtags(message):
     message = message.lower()
@@ -16,3 +17,8 @@ def generate_hashtags(message):
         word = '#' + word
         hashtags += ' ' + word
     return hashtags
+
+def shuffle_list(list):
+    list = list[:]
+    shuffle(list)
+    return list

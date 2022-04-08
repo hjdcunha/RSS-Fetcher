@@ -6,9 +6,14 @@
     - calls get data
     - inserts into the database
     - clears the lists
+    - get_data needs to be the main method
 
 - in database script
     - define create tables
     - define insert into each table
     - check if exisits before inserting (validate against title)
     - create database cleanup method
+    - add password to database / encryption
+
+- add in a logger - could find some helpful information here
+https://stackoverflow.com/questions/15727420/using-logging-in-multiple-modules
