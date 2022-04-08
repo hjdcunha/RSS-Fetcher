@@ -111,7 +111,7 @@ class RSSDatabase:
 
             self.db_cursor.execute('''
                     INSERT INTO Metrics(ActiveLinks, ActiveRows, DatabaseSize)
-                    VALUES(?,?,?)''', (int(active_links), int(active_rows), database_size))
+                    VALUES(?,?,?)''', (int(active_links[0]), int(active_rows[0]), database_size))
 
         except Exception as e:
             print("Error Inserting Metrics: {0}", e)
