@@ -6,9 +6,9 @@ from datetime import datetime
 class RSSDatabase:
 
     def __init__(self, config):
+        self.config = config
         self.create_db()
         self.create_tables()
-        self.config = config
     
     def create_db(self):
         self.db = sqlite3.connect(self.config.get_database_location())
