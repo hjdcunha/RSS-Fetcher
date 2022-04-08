@@ -18,3 +18,6 @@ class Configuration:
         self.config = None
         data = open(self.filename)
         self.config = json.load(data)
+
+    def get_poll_interval(self):
+        return self.config['pollinterval']

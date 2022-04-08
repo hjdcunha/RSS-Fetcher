@@ -43,6 +43,9 @@ class RSSFetcher:
         self.rss_list.clear()
         self.rss_data.clear()
 
+    def get_poll_interval(self):
+        return int(self.config.get_poll_interval())
+
     # Main Class Method to be called by the schedular
     # Reloads the config in case more links are added / links are removed
     # Gets the latest feed data

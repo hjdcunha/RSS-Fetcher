@@ -9,5 +9,6 @@
         "https://thesource.com/feed/"
     ],
 
-    "entrycount": 1
+    "entrycount": 1,
+    "pollinterval": 600
 }
