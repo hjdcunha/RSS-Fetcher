@@ -11,7 +11,7 @@ class RSSFetcher:
         self.rss_data = []
         
         self.config = Configuration(filename)
-        self.dbconnector = db.RSSDatabase()
+        self.dbconnector = db.RSSDatabase(self.config)
 
     # Gets all the latest content from an RSS Feed
     def get_rss_content(self, rss_link):

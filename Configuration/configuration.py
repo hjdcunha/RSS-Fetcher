@@ -21,3 +21,6 @@ class Configuration:
 
     def get_poll_interval(self):
         return self.config['pollinterval']
+
+    def get_database_location(self):
+        return self.config['databaselocation']

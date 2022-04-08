@@ -5,12 +5,13 @@ from datetime import datetime
 
 class RSSDatabase:
 
-    def __init__(self):
+    def __init__(self, config):
         self.create_db()
         self.create_tables()
+        self.config = config
     
     def create_db(self):
-        self.db = sqlite3.connect('rss-fetcher-database.db')
+        self.db = sqlite3.connect(self.config.get_database_location())
         self.db_cursor = self.db.cursor()
 
     def create_tables(self):
