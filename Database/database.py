@@ -108,7 +108,7 @@ class RSSDatabase:
                 SELECT COUNT (*) from links
             ''')
             active_links = self.db_cursor.fetchone()
-            database_size = os.stat('rss-fetcher-database.db').st_size
+            database_size = os.stat(self.config.get_database_location()).st_size
 
             self.db_cursor.execute('''
                     INSERT INTO Metrics(ActiveLinks, ActiveRows, DatabaseSize)

@@ -11,5 +11,5 @@
 
     "entrycount": 1,
     "pollinterval": 600,
-    "databaselocation": "/home/pi/Documents/RSS-Fetcher/Database/rss-fetcher-database.db"
+    "databaselocation": "/home/pi/rss-fetcher-database.db"
 }
