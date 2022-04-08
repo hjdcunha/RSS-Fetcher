@@ -7,7 +7,7 @@ def main():
     fetcher = rssfetcher.RSSFetcher(sys.argv[1])
     #fetcher.get_latest_data()
 
-    schedule.every(15).minutes.do(fetcher.get_latest_data)
+    schedule.every(30).seconds.do(fetcher.get_latest_data)
 
     while True:
         schedule.run_pending()
