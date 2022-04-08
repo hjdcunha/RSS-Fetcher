@@ -54,4 +54,5 @@ class RSSFetcher:
         self.create_database_data()
         self.dbconnector.insert_into_data_table(self.rss_data)
         self.dbconnector.insert_into_link_table(self.config.get_rss_feeds())
+        self.dbconnector.insert_metrics()
         self.cleanup()

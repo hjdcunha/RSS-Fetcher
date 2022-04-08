@@ -45,6 +45,22 @@ class RSSDatabase:
         except Exception as e:
             print("Data Table Creation Error: {0}", e)
 
+        try:
+            # Metrics Table
+            self.db_cursor.execute('''
+                CREATE TABLE IF NOT EXISTS Metrics(
+                    Id INTEGER PRIMARY KEY,
+                    ActiveLinks INTEGER,
+                    ActiveRows INTEGER,
+                    DatabaseSize TEXT,
+                    UpdatedDate DATETIME DEFAULT (datetime('now','localtime'))
+                )
+            ''')
+            self.db.commit()
+
+        except Exception as e:
+            print("Data Table Creation Error: {0}", e)
+
     def delete_database(self):
         try:
             os.remove('rss-fetcher-database.db')
@@ -58,8 +74,8 @@ class RSSDatabase:
                 self.db_cursor.execute('''
                     INSERT INTO Data(PostTitle, PostLink, PostPublishedDate, PostHashtags)
                     VALUES(?,?,?,?)''', (item['title'],item['link'],item['published_date'],item['hashtags']))
-            except Exception as e:
-                print("Error Inserting Data: {0} {1}", e, datetime.now())
+            except Exception:
+                pass
             self.db.commit()
 
     def insert_into_link_table(self, links):
@@ -79,4 +95,24 @@ class RSSDatabase:
                 print("Error Inserting Links: {0} {1}", e, datetime.now())
             self.db.commit()
 
+    def insert_metrics(self):
+        try:
+            self.db_cursor.execute('''
+                SELECT COUNT (*) from data
+            ''')
+            active_rows = self.db_cursor.fetchone()
 
+            self.db_cursor.execute
+            self.db_cursor.execute('''
+                SELECT COUNT (*) from links
+            ''')
+            active_links = self.db_cursor.fetchone()
+            database_size = os.stat('rss-fetcher-database.db').st_size
+
+            self.db_cursor.execute('''
+                    INSERT INTO Metrics(ActiveLinks, ActiveRows, DatabaseSize)
+                    VALUES(?,?,?)''', (active_links, active_rows, database_size))
+
+        except Exception as e:
+            print("Error Inserting Metrics: {0}", e)
+        self.db.commit()
