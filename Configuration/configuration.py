@@ -24,3 +24,6 @@ class Configuration:
 
     def get_database_location(self):
         return self.config['databaselocation']
+
+    def get_max_data_rows(self):
+        return self.config['max_data_rows']

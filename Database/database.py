@@ -1,4 +1,3 @@
-from shutil import ExecError
 import sqlite3
 import os
 from datetime import datetime
@@ -117,3 +116,39 @@ class RSSDatabase:
         except Exception as e:
             print("Error Inserting Metrics: {0}", e)
         self.db.commit()
+
+    def cleanup_database(self):
+        print("Data Count: " + str(self.get_data_count()))
+        print("Max Data Row Count: " + str(self.config.get_max_data_rows()))
+        if(self.get_data_count() > self.config.get_max_data_rows()):
+            try:
+                self.db_cursor.execute('''
+                    SELECT Id from Data ORDER BY Id LIMIT 1
+                ''')
+
+                oldest_post_id = self.db_cursor.fetchone()
+                print("Oldest Post ID: " + str(oldest_post_id[0]))
+
+                to_remove_count = self.get_data_count() - int(self.config.get_max_data_rows())
+                print("To Remove Count: " + str(to_remove_count))
+
+                for i in range(int(oldest_post_id[0]), int(oldest_post_id[0]) + to_remove_count):
+                    self.db_cursor.execute('''
+                        DELETE FROM Data WHERE Id=?
+                    ''', (i,))
+                self.db.commit()
+                
+                print("New Row Count: " + str(self.get_data_count()))
+
+            except Exception as e:
+                print(e)
+
+    def get_data_count(self):
+        try:
+            self.db_cursor.execute('''
+                SELECT COUNT (*) from data
+            ''')
+            data_count = self.db_cursor.fetchone()
+            return int(data_count[0])
+        except Exception as e:
+            print('Error getting Data Table Row Count.')

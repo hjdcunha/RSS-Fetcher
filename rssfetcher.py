@@ -42,6 +42,7 @@ class RSSFetcher:
     def cleanup(self):
         self.rss_list.clear()
         self.rss_data.clear()
+        self.dbconnector.cleanup_database()
 
     def get_poll_interval(self):
         return int(self.config.get_poll_interval())

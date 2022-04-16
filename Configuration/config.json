@@ -1,5 +1,5 @@
 {
-    "rssfeeds": [
+    "rssfeeds_": [
         "https://thisisrnb.com/feed/",
         "https://hiphopdx.com/rss/news.xml",
         "https://thatgrapejuice.net/feed/",
@@ -9,7 +9,13 @@
         "https://thesource.com/feed/"
     ],
 
-    "entrycount": 1,
-    "pollinterval": 600,
-    "databaselocation": "/home/pi/rss-fetcher-database.db"
+    "rssfeeds": [
+        "https://thisisrnb.com/feed/"
+    ],
+
+    "entrycount": 5,
+    "pollinterval": 10,
+    "databaselocation_": "/home/pi/rss-fetcher-database.db",
+    "databaselocation": "/Users/haydz/Documents/rss-fetcher-database.db",
+    "max_data_rows": 1000
 }
